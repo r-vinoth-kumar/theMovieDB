@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B33DA4BE2116609B00BF549D /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33DA4BD2116609B00BF549D /* Movie.swift */; };
+		B33DA4C02116613B00BF549D /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33DA4BF2116613B00BF549D /* Genre.swift */; };
 		B38B3DC1210FB8C700032D79 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38B3DC0210FB8C700032D79 /* BaseViewController.swift */; };
 		B38B3DC3210FBA7700032D79 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38B3DC2210FBA7700032D79 /* Constants.swift */; };
 		B38B3DC5210FBBD000032D79 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B38B3DC4210FBBD000032D79 /* Colors.swift */; };
@@ -37,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B33DA4BD2116609B00BF549D /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		B33DA4BF2116613B00BF549D /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
 		B38B3DC0210FB8C700032D79 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		B38B3DC2210FBA7700032D79 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B38B3DC4210FBBD000032D79 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -116,6 +120,8 @@
 		B38B3DC9210FC23800032D79 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B33DA4BD2116609B00BF549D /* Movie.swift */,
+				B33DA4BF2116613B00BF549D /* Genre.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -315,9 +321,11 @@
 			files = (
 				B3DCE47F210F96F600CCFB6A /* ViewController.swift in Sources */,
 				B38B3DC5210FBBD000032D79 /* Colors.swift in Sources */,
+				B33DA4BE2116609B00BF549D /* Movie.swift in Sources */,
 				B3DCE47D210F96F600CCFB6A /* AppDelegate.swift in Sources */,
 				B38B3DC1210FB8C700032D79 /* BaseViewController.swift in Sources */,
 				B38B3DC3210FBA7700032D79 /* Constants.swift in Sources */,
+				B33DA4C02116613B00BF549D /* Genre.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

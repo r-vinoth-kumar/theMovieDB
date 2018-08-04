@@ -107,12 +107,17 @@ extension MovieViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        var cell: UICollectionViewCell!
+        var cell: MovieCollectionCell!
 
         if loadingPlaceholder {
             // Placehold cell
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "movieCollectionCellPlaceholder", for: indexPath)
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "movieCollectionCellPlaceholder", for: indexPath) as! MovieCollectionCell
+            cell.renderUI()
         } else {
+            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "movieCollectionCell", for: indexPath) as! MovieCollectionCell
+            if let movie = moviesVM.movieAtIndex(indexPath.row) {
+                cell.movie = movie
+            }
         }
         return cell
     }

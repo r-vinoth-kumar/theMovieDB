@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: BaseViewController {
+class MovieViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +23,7 @@ class ViewController: BaseViewController {
 
 }
 
-extension ViewController: UICollectionViewDataSource {
+extension MovieViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 0
     }
@@ -35,10 +35,10 @@ extension ViewController: UICollectionViewDataSource {
 
 }
 
-extension ViewController: UICollectionViewDelegate {
+extension MovieViewController: UICollectionViewDelegate {
 
 }
 
-extension ViewController: UISearchBarDelegate {
+extension MovieViewController: UISearchBarDelegate {
 
 }

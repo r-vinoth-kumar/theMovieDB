@@ -90,8 +90,14 @@ extension MovieViewController: UISearchBarDelegate {
 
     private func search(_ searchBar: UISearchBar) {
         if let t = searchBar.text, !t.isEmpty {
+            moviesVM.params.type = .search
+            moviesVM.params.query = t
         } else {
+            moviesVM.params.type = .discover
+            moviesVM.params.query = ""
         }
+
+        moviesVM.params.page = 1
 
         self.loadingPlaceholder = true
         self.moviesVM.removeAllMovies()

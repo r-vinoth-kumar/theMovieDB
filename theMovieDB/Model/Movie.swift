@@ -93,18 +93,24 @@ struct Movie: Codable {
 
     func loadPosterImage(success: @escaping (UIImage?) -> Void) -> Void {
         if let path = posterPath {
-            //API service to get image
+            MovieAPI().downloadImage(path, withSize: 500, success: { (image) in
+                success(image)
+            }, errorMessage: {_ in
+                success(UIImage(named: "coverplaceholder"))
+            })
         } else {
-            //default placeholder image
             success(UIImage(named: "coverplaceholder"))
         }
     }
 
     func loadBackdropImage(success: @escaping (UIImage?) -> Void) -> Void {
         if let path = backdropPath {
-            //API service to get image
+            MovieAPI().downloadImage(path, withSize: 500, success: { (image) in
+                success(image)
+            }, errorMessage: {_ in
+                success(UIImage(named: "wideplaceholder"))
+            })
         } else {
-            //default placeholder image
             success(UIImage(named: "wideplaceholder"))
         }
     }

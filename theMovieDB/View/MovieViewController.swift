@@ -10,6 +10,8 @@ import UIKit
 
 class MovieViewController: BaseViewController {
 
+    private var moviesVM: MoviesViewModel = MoviesViewModel()
+    private var loadingMore: Bool = false
     private var loadingPlaceholder = true
     private var searchController : UISearchController!
     private lazy var refreshControlView: UIRefreshControl = {
@@ -23,6 +25,9 @@ class MovieViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        moviesVM.delegate = self
+
         fillCollectionViewUsingPlaceholder {
             self.reloadMoviesVC()
         }
@@ -52,8 +57,18 @@ class MovieViewController: BaseViewController {
     }
 
     private func reloadMoviesVC(_ isPullToRefresh: Bool = false) {
-        //make API call to get the movies list
+        self.moviesVM.loadMovies { () in
+            self.loadingPlaceholder = false
+            DispatchQueue.main.async {
+                self.hideError(animated: true)
+                if isPullToRefresh == true {
+                    self.refreshControlView.endRefreshing()
+                }
+                self.collectionView.reloadData()
+            }
+        }
     }
+
 }
 
 extension MovieViewController: UISearchBarDelegate {
@@ -74,6 +89,12 @@ extension MovieViewController: UISearchBarDelegate {
     }
 
     private func search(_ searchBar: UISearchBar) {
+        if let t = searchBar.text, !t.isEmpty {
+        } else {
+        }
+
+        self.loadingPlaceholder = true
+        self.moviesVM.removeAllMovies()
         fillCollectionViewUsingPlaceholder {
             self.reloadMoviesVC()
         }
@@ -82,7 +103,7 @@ extension MovieViewController: UISearchBarDelegate {
 
 extension MovieViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return loadingPlaceholder ? 4 : 0
+        return loadingPlaceholder ? 4 : moviesVM.countMovies
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -104,6 +125,9 @@ extension MovieViewController: UICollectionViewDelegate {
             collectionView.deselectItem(at: indexPath, animated: false)
         } else {
             collectionView.deselectItem(at: indexPath, animated: true)
+            let data = moviesVM.movieAtIndex(indexPath.row)
+            performSegue(withIdentifier: "movieDetails", sender: data)
+            //            performSegue(withIdentifier: "segueMovieDetails", sender: data)
         }
     }
 }
@@ -116,3 +140,19 @@ extension MovieViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
+extension MovieViewController: AsyncResponse {
+    func doneLoadMoreMovies() {
+        DispatchQueue.main.async {
+            self.hideError(animated: true)
+            self.collectionView.reloadData()
+        }
+    }
+
+    func error(_ errorMessage: String) {
+        DispatchQueue.main.async {
+            self.refreshControlView.endRefreshing()
+            self.collectionView.reloadData()
+            self.showErrorWith(message: errorMessage, animated: true)
+        }
+    }
+}

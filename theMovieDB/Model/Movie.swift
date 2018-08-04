@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 struct Movie: Codable {
+
     let id: Int
     let title: String?
     var overview: String?
@@ -91,7 +92,6 @@ struct Movie: Codable {
     }
 
     func loadPosterImage(success: @escaping (UIImage?) -> Void) -> Void {
-
         if let path = posterPath {
             //API service to get image
         } else {
@@ -101,7 +101,6 @@ struct Movie: Codable {
     }
 
     func loadBackdropImage(success: @escaping (UIImage?) -> Void) -> Void {
-
         if let path = backdropPath {
             //API service to get image
         } else {
@@ -109,8 +108,6 @@ struct Movie: Codable {
             success(UIImage(named: "wideplaceholder"))
         }
     }
-
-
 }
 
 extension Movie : Equatable {

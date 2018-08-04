@@ -10,7 +10,7 @@ import UIKit
 
 class BaseViewController: UIViewController {
 
-    @IBOutlet var errorView: UIView?
+    @IBOutlet var errorView: ErrorView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,9 +21,11 @@ class BaseViewController: UIViewController {
     }
 
     func showErrorWith(message: String, animated: Bool) {
+        errorView?.showErrorWith(message: message, animated: animated)
     }
 
     func hideError(animated: Bool) {
+        errorView?.hideError(animated: animated)
     }
 
 }

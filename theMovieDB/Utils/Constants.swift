@@ -6,9 +6,6 @@
 //  Copyright © 2018 Vinoth Kumar Ramalingam. All rights reserved.
 //
 
-import Foundation
-import UIKit
-
 struct Constants {
     struct Server {
         static let baseURL: String = "https://api.themoviedb.org/3"

@@ -6,8 +6,6 @@
 //  Copyright © 2018 Vinoth Kumar Ramalingam. All rights reserved.
 //
 
-import Foundation
-
 protocol AsyncResponse {
     func doneLoadMoreMovies()
     func error(_ errorMessage: String)

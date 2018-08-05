@@ -6,7 +6,6 @@
 //  Copyright © 2018 Vinoth Kumar Ramalingam. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 class MovieAPI {

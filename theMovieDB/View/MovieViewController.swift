@@ -53,7 +53,7 @@ class MovieViewController: BaseViewController {
     }
 
     private func fillCollectionViewUsingPlaceholder(done:@escaping () -> Void) {
-        collectionView.reloadData()
+        self.collectionView.reloadData()
         DispatchQueue.main.async {
             done()
         }
@@ -146,7 +146,6 @@ extension MovieViewController: UICollectionViewDelegate {
             collectionView.deselectItem(at: indexPath, animated: true)
             let data = moviesVM.movieAtIndex(indexPath.row)
             performSegue(withIdentifier: "movieDetails", sender: data)
-            //            performSegue(withIdentifier: "segueMovieDetails", sender: data)
         }
     }
 }
@@ -169,9 +168,8 @@ extension MovieViewController: AsyncResponse {
 
     func error(_ errorMessage: String) {
         DispatchQueue.main.async {
-            self.refreshControlView.endRefreshing()
-            self.collectionView.reloadData()
             self.showErrorWith(message: errorMessage, animated: true)
+            self.refreshControlView.endRefreshing()
         }
     }
 }

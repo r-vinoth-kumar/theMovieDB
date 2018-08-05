@@ -17,9 +17,11 @@ class MovieDetailsViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        movieDetailVM.delegate = self
         self.navigationController?.navigationBar.prefersLargeTitles = true
         movieDetailVM.loadDetails {
             DispatchQueue.main.async {
+                self.hideError(animated: true)
                 self.movieDetails?.reloadData()
             }
         }
@@ -53,3 +55,15 @@ extension MovieDetailsViewController: UICollectionViewDelegateFlowLayout {
         return CGSize(width: screenWidth, height: (screenWidth * 1.3))
     }
 }
+
+extension MovieDetailsViewController: AsyncResponse {
+    func doneLoadMoreMovies() {
+    }
+
+    func error(_ errorMessage: String) {
+        DispatchQueue.main.async {
+            self.showErrorWith(message: errorMessage, animated: true)
+        }
+    }
+}
+

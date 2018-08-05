@@ -9,6 +9,7 @@
 class MovieDetailViewModel {
 
     var movie : Movie
+    var delegate: AsyncResponse?
 
     init(movie : Movie) {
         self.movie = movie
@@ -20,10 +21,12 @@ class MovieDetailViewModel {
             self.movie.revenue = responseMovie.revenue
             self.movie.runtime = responseMovie.runtime
             self.movie.overview = responseMovie.overview
+            self.movie.language = responseMovie.language
+            self.movie.homepage = responseMovie.homepage
             self.movie.genres = responseMovie.genres
             success()
         }) { (error) in
-            // TODO: alert user to retry
+            self.delegate?.error(error)
         }
     }
 

@@ -26,6 +26,13 @@ class MovieDetailsViewController: BaseViewController {
             }
         }
     }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "inAppLink") {
+            let destinationVC = segue.destination as! InAppLinkViewController
+            destinationVC.link = sender as! String
+        }
+    }
 }
 
 extension MovieDetailsViewController: UICollectionViewDataSource {
@@ -37,6 +44,9 @@ extension MovieDetailsViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdList[indexPath.row], for: indexPath)
         if var detailsCell = cell as? MovieDetailsCellBase {
             detailsCell.movie = movieDetailVM.movie
+        }
+        if var detailsCell = cell as? MovieOverviewCell {
+            detailsCell.delegate = self
         }
         return cell
     }
@@ -67,3 +77,10 @@ extension MovieDetailsViewController: AsyncResponse {
     }
 }
 
+extension MovieDetailsViewController: OpenLink {
+    func openLink(_ link: String?) {
+        if let link = link {
+            self.performSegue(withIdentifier: "inAppLink", sender: link)
+        }
+    }
+}

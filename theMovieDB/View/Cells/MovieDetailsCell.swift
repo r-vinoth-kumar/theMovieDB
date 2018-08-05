@@ -60,6 +60,10 @@ class MovieImageCell : UICollectionViewCell, MovieDetailsCellBase {
 
 }
 
+protocol OpenLink {
+    func openLink(_ link: String?)
+}
+
 class MovieOverviewCell : UICollectionViewCell, MovieDetailsCellBase {
     @IBOutlet weak var runtime: UILabel!
     @IBOutlet weak var language: UILabel!
@@ -68,6 +72,8 @@ class MovieOverviewCell : UICollectionViewCell, MovieDetailsCellBase {
     @IBOutlet weak var overview: UITextView!
 
     @IBOutlet var genreView: GenreCollectionView?
+    var homePageLink: String?
+    var delegate: OpenLink?
 
     var movie: Movie? {
         didSet {
@@ -86,8 +92,17 @@ class MovieOverviewCell : UICollectionViewCell, MovieDetailsCellBase {
             if let genes = movie?.genres {
                 self.genreView?.genreList = genes
             }
+            if let link = movie?.homepage {
+                self.homePageLink = link
+                self.homePage.setTitle("Open Link", for: .normal)
+            }
         }
     }
+
+    @IBAction func openHomePage(_ sender: UIButton) {
+        self.delegate?.openLink(homePageLink)
+    }
+
 }
 
 class GenreCell : UICollectionViewCell {

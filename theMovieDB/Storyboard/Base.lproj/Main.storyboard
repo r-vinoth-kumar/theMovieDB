@@ -38,7 +38,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="234"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qHN-qW-azu">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wideplaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="qHN-qW-azu">
                                                     <rect key="frame" x="0.0" y="0.0" width="343" height="193"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </imageView>
@@ -333,7 +333,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="475"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tx6-mI-iBJ">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="coverplaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="tx6-mI-iBJ">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="429"/>
                                                 </imageView>
                                                 <view alpha="0.25" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ijv-mf-4M8">
@@ -475,6 +475,9 @@
                                                     <rect key="frame" x="255" y="46" width="112" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <state key="normal" title="-"/>
+                                                    <connections>
+                                                        <action selector="openHomePage:" destination="9hR-QK-96S" eventType="touchUpInside" id="UXn-jz-JfL"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WRB-Aj-LTF">
                                                     <rect key="frame" x="78" y="8" width="111" height="30"/>
@@ -699,15 +702,55 @@
                     <connections>
                         <outlet property="errorView" destination="IB8-zF-xw1" id="vTp-G8-Kmm"/>
                         <outlet property="movieDetails" destination="r1G-YD-QHg" id="TiT-1K-694"/>
+                        <segue destination="Jbo-aj-no7" kind="show" identifier="inAppLink" id="CrX-53-QGv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xtt-ql-G0f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-769" y="137"/>
         </scene>
+        <!--In App Link View Controller-->
+        <scene sceneID="GHz-Zl-eKN">
+            <objects>
+                <viewController id="Jbo-aj-no7" customClass="InAppLinkViewController" customModule="theMovieDB" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YU6-3D-6Nm"/>
+                        <viewControllerLayoutGuide type="bottom" id="vbg-Iq-0Dl"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ed6-gK-oFU">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m3z-ms-G6r">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="m3z-ms-G6r" firstAttribute="centerY" secondItem="ed6-gK-oFU" secondAttribute="centerY" id="2Ry-VW-NiU"/>
+                            <constraint firstItem="m3z-ms-G6r" firstAttribute="height" secondItem="ed6-gK-oFU" secondAttribute="height" id="So5-R0-9XK"/>
+                            <constraint firstItem="m3z-ms-G6r" firstAttribute="centerX" secondItem="ed6-gK-oFU" secondAttribute="centerX" id="irJ-E5-V7l"/>
+                            <constraint firstItem="m3z-ms-G6r" firstAttribute="width" secondItem="ed6-gK-oFU" secondAttribute="width" id="qts-iJ-2vQ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="CfW-kc-faW"/>
+                    <connections>
+                        <outlet property="webView" destination="m3z-ms-G6r" id="Iui-d9-k5w"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5QC-js-bfW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="264.80000000000001" y="136.69950738916256"/>
+        </scene>
     </scenes>
     <resources>
         <image name="adult" width="213" height="130"/>
+        <image name="coverplaceholder" width="225" height="360"/>
         <image name="editorChoice2" width="240" height="200"/>
         <image name="fire" width="256" height="256"/>
         <image name="homepage" width="500" height="500"/>
@@ -717,6 +760,7 @@
         <image name="revenue" width="256" height="256"/>
         <image name="runtime" width="300" height="300"/>
         <image name="stacked-green" width="53" height="58"/>
+        <image name="wideplaceholder" width="320" height="120"/>
         <namedColor name="primary">
             <color red="0.0039215686274509803" green="0.82352941176470584" blue="0.46666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

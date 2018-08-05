@@ -57,4 +57,21 @@ class MovieAPI {
             }
         }).resume()
     }
+
+    func movieDetailsWithId(_ movieId: Int, success: @escaping (_ movie: Movie) -> Void, errorMessage: @escaping (String) -> Void) {
+        guard let url = try? APIRouter.movie(id: movieId).asURLRequest() else { return }
+        session.dataTask(with: url, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) in
+            do {
+                if let error = error {
+                    errorMessage("Error getting response from server. \(error.localizedDescription)")
+                    return
+                }
+                guard let data = data else { return }
+                let movie = try self.decoder.decode(Movie.self, from: data)
+                success(movie)
+            } catch {
+                errorMessage("Error getting response from server. \(error.localizedDescription)")
+            }
+        }).resume()
+    }
 }

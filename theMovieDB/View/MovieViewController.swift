@@ -44,6 +44,14 @@ class MovieViewController: BaseViewController {
         self.navigationController?.navigationBar.prefersLargeTitles = true
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let vc = segue.destination as? MovieDetailsViewController {
+            if let sender = sender as? Movie {
+                vc.movieDetailVM = MovieDetailViewModel(movie: sender)
+            }
+        }
+    }
+
     private func fillCollectionViewUsingPlaceholder(done:@escaping () -> Void) {
         collectionView.reloadData()
         DispatchQueue.main.async {

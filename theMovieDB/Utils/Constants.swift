@@ -25,5 +25,4 @@ struct Constants {
     struct ParameterValue {
         static let sortOrder = "popularity.desc"
     }
-
 }

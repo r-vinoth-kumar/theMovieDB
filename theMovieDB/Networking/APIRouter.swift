@@ -22,9 +22,9 @@ enum APIRouter {
         case .image(let size, _):
             return URL(string: "\(Constants.Server.imageURL)\(size)")!
         case .searchMovie(let query, let page):
-            return URL(string: "\(Constants.Server.baseURL)?\(Constants.ParameterKey.apiKey)=\(Constants.Server.apiKey)&\(Constants.ParameterKey.sort)=\(Constants.ParameterValue.sortOrder)&\(Constants.ParameterKey.includeAdult)=true&\(Constants.ParameterKey.query)=\(query)&\(Constants.ParameterKey.page)=\(page)")!
+            return URL(string: "\(Constants.Server.baseURL)?\(Constants.ParameterKey.apiKey)=\(Constants.Server.apiKey)&\(Constants.ParameterKey.sort)=\(Constants.ParameterValue.sortOrder)&\(Constants.ParameterKey.includeAdult)=false&\(Constants.ParameterKey.query)=\(query)&\(Constants.ParameterKey.page)=\(page)")!
         case .discoverMovie(let page):
-            return URL(string: "\(Constants.Server.baseURL)?\(Constants.ParameterKey.apiKey)=\(Constants.Server.apiKey)&\(Constants.ParameterKey.sort)=\(Constants.ParameterValue.sortOrder)&\(Constants.ParameterKey.includeAdult)=true&\(Constants.ParameterKey.page)=\(page)")!
+            return URL(string: "\(Constants.Server.baseURL)?\(Constants.ParameterKey.apiKey)=\(Constants.Server.apiKey)&\(Constants.ParameterKey.sort)=\(Constants.ParameterValue.sortOrder)&\(Constants.ParameterKey.includeAdult)=false&\(Constants.ParameterKey.page)=\(page)")!
         }
     }
 

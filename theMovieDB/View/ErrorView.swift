@@ -9,11 +9,12 @@
 import UIKit
 
 class ErrorView: UIView {
-    @IBOutlet weak var message: UILabel!
+    @IBOutlet var message: UILabel!
     private var errorShowed = false
 
     func showErrorWith(message: String, animated: Bool) {
         if errorShowed {
+            self.isHidden = false
             return
         }
         errorShowed = true
@@ -32,6 +33,7 @@ class ErrorView: UIView {
 
     func hideError(animated: Bool) {
         if !errorShowed {
+            self.isHidden = true
             return
         }
         errorShowed = false

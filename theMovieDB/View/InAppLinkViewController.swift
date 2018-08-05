@@ -19,8 +19,4 @@ class InAppLinkViewController: UIViewController {
         self.navigationController?.navigationBar.prefersLargeTitles = false
         self.webView.load(URLRequest(url: URL(string: link!)!, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 100))
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
 }

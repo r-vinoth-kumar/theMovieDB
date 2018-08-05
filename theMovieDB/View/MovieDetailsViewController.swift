@@ -21,7 +21,7 @@ class MovieDetailsViewController: BaseViewController {
         self.navigationController?.navigationBar.prefersLargeTitles = true
         movieDetailVM.loadDetails {
             DispatchQueue.main.async {
-                self.hideError(animated: true)
+                self.errorView?.hideError(animated: true)
                 self.movieDetails?.reloadData()
             }
         }
@@ -30,7 +30,7 @@ class MovieDetailsViewController: BaseViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "inAppLink") {
             let destinationVC = segue.destination as! InAppLinkViewController
-            destinationVC.link = sender as! String
+            destinationVC.link = sender as? String
         }
     }
 }
@@ -45,7 +45,7 @@ extension MovieDetailsViewController: UICollectionViewDataSource {
         if var detailsCell = cell as? MovieDetailsCellBase {
             detailsCell.movie = movieDetailVM.movie
         }
-        if var detailsCell = cell as? MovieOverviewCell {
+        if let detailsCell = cell as? MovieOverviewCell {
             detailsCell.delegate = self
         }
         return cell
@@ -72,7 +72,7 @@ extension MovieDetailsViewController: AsyncResponse {
 
     func error(_ errorMessage: String) {
         DispatchQueue.main.async {
-            self.showErrorWith(message: errorMessage, animated: true)
+            self.errorView?.showErrorWith(message: errorMessage, animated: true)
         }
     }
 }

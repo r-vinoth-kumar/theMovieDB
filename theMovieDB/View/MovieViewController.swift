@@ -68,7 +68,7 @@ class MovieViewController: BaseViewController {
         self.moviesVM.loadMovies { () in
             self.loadingPlaceholder = false
             DispatchQueue.main.async {
-                self.hideError(animated: true)
+                self.errorView?.hideError(animated: true)
                 if isPullToRefresh == true {
                     self.refreshControlView.endRefreshing()
                 }
@@ -161,14 +161,14 @@ extension MovieViewController: UICollectionViewDelegateFlowLayout {
 extension MovieViewController: AsyncResponse {
     func doneLoadMoreMovies() {
         DispatchQueue.main.async {
-            self.hideError(animated: true)
+            self.errorView?.hideError(animated: true)
             self.collectionView.reloadData()
         }
     }
 
     func error(_ errorMessage: String) {
         DispatchQueue.main.async {
-            self.showErrorWith(message: errorMessage, animated: true)
+            self.errorView?.showErrorWith(message: errorMessage, animated: true)
             self.refreshControlView.endRefreshing()
         }
     }

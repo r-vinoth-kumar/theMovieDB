@@ -12,25 +12,99 @@ class theMovieDBUITests: XCTestCase {
         
     override func setUp() {
         super.setUp()
-        
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-        
-        // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
-        // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
-        XCUIApplication().launch()
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
     }
     
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
-    
-    func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+
+    func testMoveListView() {
+        let app = XCUIApplication()
+        app.launch()
+        XCUIDevice.shared.orientation = .portrait
+        app.collectionViews.cells.element(boundBy:0).swipeUp()
+        XCUIDevice.shared.orientation = .landscapeLeft
+        app.collectionViews.cells.element(boundBy:0).swipeUp()
+        XCUIDevice.shared.orientation = .portrait
+        app.collectionViews.cells.element(boundBy:0).swipeUp()
+        XCUIDevice.shared.orientation = .landscapeRight
+        app.collectionViews.cells.element(boundBy:0).swipeUp()
+        XCUIDevice.shared.orientation = .portrait
+        app.collectionViews.cells.element(boundBy:0).swipeUp()
+    }
+
+    func testMovieDetailsView() {
+        let app = XCUIApplication()
+        app.launch()
+        app.collectionViews.cells.element(boundBy:0).tap()
+        let theMovieDBBackButton = app.navigationBars["Details"].buttons["The Movie DB"]
+        XCUIDevice.shared.orientation = .portrait
+        app.collectionViews.cells.element(boundBy:0).swipeUp()
+        XCUIDevice.shared.orientation = .landscapeLeft
+        app.collectionViews.cells.element(boundBy:0).swipeUp()
+        XCUIDevice.shared.orientation = .portrait
+        app.collectionViews.cells.element(boundBy:0).swipeDown()
+        XCUIDevice.shared.orientation = .landscapeRight
+        app.collectionViews.cells.element(boundBy:0).swipeUp()
+        XCUIDevice.shared.orientation = .portrait
+        app.collectionViews.cells.element(boundBy:0).swipeDown()
+        theMovieDBBackButton.tap()
+    }
+
+    func testOpenHomepageLink() {
+        let app = XCUIApplication()
+        app.launch()
+        app.collectionViews.cells.element(boundBy:0).tap()
+
+        let theMovieDBBackButton = app.navigationBars["Details"].buttons["The Movie DB"]
+        let openLink = app.buttons["Open Link"]
+        openLink.tap()
+        app.webViews.firstMatch.swipeDown()
+        app.webViews.firstMatch.swipeUp()
+        let detailsBackButton = app.navigationBars.element(boundBy: 0).buttons.element(boundBy: 0)
+        detailsBackButton.tap()
+        theMovieDBBackButton.tap()
+    }
+
+    func testLoadMoreMovies() {
+        let app = XCUIApplication()
+        app.launch()
+        for _ in 0...15 {
+            app.collectionViews.cells.element(boundBy:1).swipeUp()
+        }
+        app.collectionViews.cells.element(boundBy:1).tap()
+        let theMovieDBBackButton = app.navigationBars["Details"].buttons["The Movie DB"]
+        app.collectionViews.cells.element(boundBy:0).swipeUp()
+        theMovieDBBackButton.tap()
+    }
+
+    func testSearchBar() {
+        let app = XCUIApplication()
+        app.launch()
+        app.collectionViews.cells.element(boundBy:0).swipeDown()
+
+        let searchForMoviesSearchField = app.searchFields["Find your favorite movies"]
+        searchForMoviesSearchField.tap()
+        searchForMoviesSearchField.typeText("mission")
+        app.typeText("\r")
+        searchForMoviesSearchField.tap()
+
+        let theMovieDBBackButton = app.navigationBars["Details"].buttons["The Movie DB"]
+        app.collectionViews.cells.element(boundBy:0).tap()
+        theMovieDBBackButton.tap()
+
+        let cancelButton = app.buttons["Cancel"]
+        cancelButton.tap()
+    }
+
+    func testPullToRefresh() {
+        let app = XCUIApplication()
+        app.launch()
+        let firstCell = app.collectionViews.cells.element(boundBy:0)
+        let start = firstCell.coordinate(withNormalizedOffset: CGVector(dx: 0, dy: 0))
+        let finish = firstCell.coordinate(withNormalizedOffset: CGVector(dx: 0, dy: 6))
+        start.press(forDuration: 0, thenDragTo: finish)
     }
     
 }

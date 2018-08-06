@@ -28,22 +28,18 @@ struct Movie: Codable {
     var language: String?
     var homepage: String?
 
-    var releaseDate: Date? {
+    var releaseDate: Date {
         get {
             let dayTimeFormatter = DateFormatter()
             dayTimeFormatter.dateFormat = "yyyy-MM-dd"
-            return dayTimeFormatter.date(from: self.releaseDateString)
+            return dayTimeFormatter.date(from: self.releaseDateString) ?? Date()
         }
     }
 
     var releaseYear: Int {
         get {
             let calendar = Calendar.current
-            if let releaseDate = self.releaseDate {
-                return calendar.component(.year, from: releaseDate)
-            } else {
-                return 0
-            }
+            return calendar.component(.year, from: releaseDate)
         }
     }
 
@@ -62,11 +58,7 @@ struct Movie: Codable {
     var isNewRelease: Bool {
         get {
             let calendar = Calendar.current
-            if let releaseDate = self.releaseDate {
-                return calendar.dateComponents([.month], from: releaseDate, to: Date()).month ?? 6 < 6
-            } else {
-                return false
-            }
+            return calendar.dateComponents([.month], from: releaseDate, to: Date()).month ?? 6 < 6
         }
     }
 

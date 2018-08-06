@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--The Movies-->
+        <!--The Movie DB-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="The Movies" id="BYZ-38-t0r" customClass="MovieViewController" customModule="theMovieDB" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MovieViewController" title="The Movie DB" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="MovieViewController" customModule="theMovieDB" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -288,7 +288,7 @@
         <!--Navigation Controller-->
         <scene sceneID="PKW-1T-zDS">
             <objects>
-                <navigationController id="rYW-fT-t3Z" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NavigationController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="rYW-fT-t3Z" sceneMemberID="viewController">
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" largeTitles="YES" id="l8Q-RX-uPM">
                         <rect key="frame" x="0.0" y="44" width="375" height="96"/>
@@ -307,7 +307,7 @@
         <!--Details-->
         <scene sceneID="q4E-7I-cep">
             <objects>
-                <viewController title="Details" id="pTm-qn-ucc" customClass="MovieDetailsViewController" customModule="theMovieDB" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MovieDetailsViewController" title="Details" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pTm-qn-ucc" customClass="MovieDetailsViewController" customModule="theMovieDB" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fGa-Vc-WRl"/>
                         <viewControllerLayoutGuide type="bottom" id="5IR-VL-hbB"/>
@@ -712,7 +712,7 @@
         <!--In App Link View Controller-->
         <scene sceneID="GHz-Zl-eKN">
             <objects>
-                <viewController id="Jbo-aj-no7" customClass="InAppLinkViewController" customModule="theMovieDB" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="InAppLinkViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Jbo-aj-no7" customClass="InAppLinkViewController" customModule="theMovieDB" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="YU6-3D-6Nm"/>
                         <viewControllerLayoutGuide type="bottom" id="vbg-Iq-0Dl"/>

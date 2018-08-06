@@ -11,9 +11,8 @@ import UIKit
 class MovieDetailsViewController: BaseViewController {
 
     @IBOutlet var movieDetails: UICollectionView?
-    var addMovieSelectedColor: UIColor!
     var movieDetailVM : MovieDetailViewModel!
-    var cellIdList : [String] = ["movieImageCell", "movieOverviewCell"]
+    private var cellIdList : [String] = ["movieImageCell", "movieOverviewCell"]
 
     override func viewDidLoad() {
         super.viewDidLoad()

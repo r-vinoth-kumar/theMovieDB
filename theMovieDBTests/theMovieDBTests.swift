@@ -11,26 +11,38 @@ import XCTest
 
 class theMovieDBTests: XCTestCase {
     
+    var movieList: [Movie]?
+    var movieDetails: Movie?
+
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        let bundle = Bundle(for: type(of: self))
+        let movieListFileURL = bundle.url(forResource: "movie-list", withExtension: "json")
+        let movieDetailFileURL = bundle.url(forResource: "movie-detail", withExtension: "json")
+        do {
+            let movieListJsonData: Data = try Data(contentsOf: movieListFileURL!)
+            movieList = try JSONDecoder().decode(QueryResult.self, from: movieListJsonData).results
+            let movieDetailJsonData = try Data(contentsOf: movieDetailFileURL!)
+            movieDetails = try JSONDecoder().decode(Movie.self, from: movieDetailJsonData)
+        } catch {
+        }
     }
     
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
-    
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+
+    // MARK: IntExtension
+    func testIntToRuntime() {
+        let givenTime = 100
+        let dayComponent = givenTime.toRuntime()
+        XCTAssertEqual(dayComponent, "1h 40m")
     }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+
+    func testIntToUSCurrency() {
+        let givenRevenue = 100853753
+        let dayComponent = givenRevenue.toUSCurrency()
+        XCTAssertEqual(dayComponent, "$100,853,753.00")
     }
     
 }

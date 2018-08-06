@@ -44,6 +44,16 @@ So, **MVVM** it is... :)
 
 ![MVVM ScreenShot](https://themindstudios.com/blog/content/images/2017/07/MVVM-model.jpg)
 
+## APIs
+
+Powered by [The Movie DB API](https://developers.themoviedb.org/3/getting-started/introduction)
+
+![Powered by The Movie DB](https://www.themoviedb.org/assets/1/v4/logos/408x161-powered-by-rectangle-green-bb4301c10ddc749b4e79463811a68afebeae66ef43d17bcfd8ff0e60ded7ce99.png)
+
+## App Demo
+
+![Walkthrough](/Walkthrough/animated.gif)
+
 ## Authors
 
 * **Vinoth Kumar Ramalingam** - [r-vinoth-kumar](https://github.com/r-vinoth-kumar)

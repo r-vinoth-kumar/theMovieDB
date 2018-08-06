@@ -52,7 +52,8 @@ Powered by [The Movie DB API](https://developers.themoviedb.org/3/getting-starte
 
 ## App Demo
 
-![Walkthrough](/Walkthrough/animated.gif)
+![Walkthrough-portrait](/Walkthrough/animated.gif)
+![Walkthrough-landscape](/Walkthrough/animated2.gif)
 
 ## Build monitor
 

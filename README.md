@@ -54,6 +54,12 @@ Powered by [The Movie DB API](https://developers.themoviedb.org/3/getting-starte
 
 ![Walkthrough](/Walkthrough/animated.gif)
 
+## Build monitor
+
+The build status are monitored by **[Travis CI](https://travis-ci.com/r-vinoth-kumar/theMovieDB)**
+
+The code coverage details can be found in **[CodeCov](https://codecov.io/gh/r-vinoth-kumar/theMovieDB)**
+
 ## Authors
 
 * **Vinoth Kumar Ramalingam** - [r-vinoth-kumar](https://github.com/r-vinoth-kumar)

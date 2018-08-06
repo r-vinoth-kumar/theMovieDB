@@ -23,15 +23,10 @@ class theMovieDBUITests: XCTestCase {
         let app = XCUIApplication()
         app.launch()
         XCUIDevice.shared.orientation = .portrait
-        app.collectionViews.cells.element(boundBy:0).swipeUp()
         XCUIDevice.shared.orientation = .landscapeLeft
-        app.collectionViews.cells.element(boundBy:0).swipeUp()
         XCUIDevice.shared.orientation = .portrait
-        app.collectionViews.cells.element(boundBy:0).swipeUp()
         XCUIDevice.shared.orientation = .landscapeRight
-        app.collectionViews.cells.element(boundBy:0).swipeUp()
         XCUIDevice.shared.orientation = .portrait
-        app.collectionViews.cells.element(boundBy:0).swipeUp()
     }
 
     func testMovieDetailsView() {

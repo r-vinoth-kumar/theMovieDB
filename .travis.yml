@@ -1,0 +1,15 @@
+language: swift
+
+xcode_project: theMovieDB.xcodeproj
+xcode_scheme: theMovieDB
+
+osx_image: xcode9.4.1
+
+before_install:
+
+script:
+  - xcodebuild build-for-testing -project theMovieDB.xcodeproj  -scheme theMovieDB -destination 'platform=iOS Simulator,name=iPhone 8,OS=11.4'
+  - xcodebuild test-without-building -project theMovieDB.xcodeproj -scheme theMovieDB -destination 'platform=iOS Simulator,name=iPhone 8,OS=11.4'
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
